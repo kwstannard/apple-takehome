@@ -23,4 +23,12 @@ RSpec.feature 'current temperature', type: :request do
       expect(response.body).to eq('{"current_temperature":50}')
     end
   end
+
+  scenario 'a user forgets the address' do
+    get '/v1/current_temperature'
+
+    aggregate_failures do
+      expect(response.status).to eq(400)
+    end
+  end
 end
