@@ -6,27 +6,21 @@
   when: 1745437350
   paths:
     - shell_history
-- cmd: git add .
-  when: 1745437359
-  paths:
-    - .
-- cmd: git commit
-  when: 1745437362
 - cmd: rails new . --skip-test --skip-js --api --skip-docker -M -C -A
   when: 1745438052
   paths:
     - .
-- cmd: git add .
-  when: 1745438074
-  paths:
-    - .
-- cmd: git commit
-  when: 1745438077
 - cmd: bundle add rspec-rails
   when: 1745438140
 - cmd: rails g rspec:install
   when: 1745438171
 - cmd: git add .
   when: 1745438179
+  paths:
+    - .
+- cmd: git commit
+  when: 1745438181
+- cmd: git add .
+  when: 1745439100
   paths:
     - .

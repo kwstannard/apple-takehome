@@ -1,24 +1,31 @@
-# README
+# Weather forecaster
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Hello dear readers, and welcome.
 
-Things you may want to cover:
+## Please note the following guidelines for reviewing this project
 
-* Ruby version
+I use in git commit messages over comments 95% of the time. If you have a question about something, please read the commit message.
 
-* System dependencies
+Given that this is a backend position I am using an API as the UI. If you are wondering how to use it, I utilize the spec/features directory for user acceptance tests.
 
-* Configuration
+I am going to keep this close to bog standard Rails as possible. If you want to see cool things, go check out my github profile.
 
-* Database creation
+I am going to do one thing you have never seen before to mock out a remote weather service.
 
-* Database initialization
+I do test driven design starting with the http interface. It is okay to say that the app is the unit and everything under that is private. If I believe that the test suite will benefit from tests for lower level interfaces I will do that.
 
-* How to run the test suite
+I hope whoever is reading this is a Sandi Metz fan.
 
-* Services (job queues, cache servers, search engines, etc.)
+Again, I cannot stress this enough check the git commits if you have questions.
 
-* Deployment instructions
+## How to setup
 
-* ...
+`bin/setup`
+
+## How to run the server
+
+`bin/rails server`
+
+## How to run the tests
+
+`bin/rspec`
