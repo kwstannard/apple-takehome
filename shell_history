@@ -44,3 +44,15 @@
   when: 1745440294
   paths:
     - .
+- cmd: git commit
+  when: 1745440297
+- cmd: bin/rspec
+  when: 1745440574
+- cmd: git st
+  when: 1745440684
+- cmd: git co config
+  when: 1745440712
+  paths:
+    - config
+- cmd: git commit -am 'fix rspec-rails location'
+  when: 1745440735
