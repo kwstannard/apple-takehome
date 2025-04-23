@@ -1,16 +1,22 @@
 module V1
   class TemperaturesController < ApplicationController
     def current
-      address
-      render json: { current_temperature: 50 }
+      render json: WeatherService.get(address)
     end
 
     private
       def address
-        params.require(:address1)
-        params.require(:city)
-        params.require(:state)
-        params.require(:zip)
+        Address.new(**params.permit(Address.members))
+      end
+
+      Address = Struct.new(:address1, :city, :state, :zip) do
+        include ActiveModel::Validations
+        validates *members, presence: true
+
+        def initialize(*a, **b)
+          super
+          validate!
+        end
       end
   end
 end

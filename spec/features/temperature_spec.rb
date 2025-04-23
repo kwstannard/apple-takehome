@@ -10,11 +10,25 @@ Reqs
 require 'rails_helper'
 
 RSpec.feature 'current temperature', type: :request do
-  scenario 'a user requests for Sacremento' do
+  scenario 'a user requests for Indianapolis' do
     get '/v1/current_temperature', params: {
       address1: '1234 Street Av',
-      city: 'Sacremento',
-      state: 'Ca',
+      city: 'Indianapolis',
+      state: 'IN',
+      zip: '46255',
+    }
+
+    aggregate_failures do
+      expect(response.status).to eq(200)
+      expect(response.body).to eq('{"current_temperature":70}')
+    end
+  end
+
+  scenario 'a user requests for Sacramento' do
+    get '/v1/current_temperature', params: {
+      address1: '1234 Street Av',
+      city: 'Sacramento',
+      state: 'CA',
       zip: '11111',
     }
 
