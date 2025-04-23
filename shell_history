@@ -1,0 +1,12 @@
+- cmd: ls -la ~/.local/share/fish/apple_history
+  when: 1745437342
+  paths:
+    - ~/.local/share/fish/apple_history
+- cmd: less shell_history
+  when: 1745437350
+  paths:
+    - shell_history
+- cmd: git add .
+  when: 1745437359
+  paths:
+    - .
