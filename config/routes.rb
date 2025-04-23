@@ -7,4 +7,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  namespace :v1 do
+    get 'current_temperature', to: 'temperatures#current'
+  end
 end

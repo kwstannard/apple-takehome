@@ -14,40 +14,14 @@
   when: 1745438140
 - cmd: rails g rspec:install
   when: 1745438171
-- cmd: git add .
-  when: 1745438179
-  paths:
-    - .
-- cmd: git commit
-  when: 1745438181
-- cmd: git add .
-  when: 1745439100
-  paths:
-    - .
-- cmd: git commit
-  when: 1745439102
 - cmd: bundle binstubs --all
   when: 1745439684
-- cmd: git st
-  when: 1745439686
-- cmd: git add .
-  when: 1745439705
-  paths:
-    - .
-- cmd: git commit
-  when: 1745439708
-- cmd: bin/rspec
-  when: 1745439728
-- cmd: git st
-  when: 1745440291
 - cmd: git add .
   when: 1745440294
   paths:
     - .
 - cmd: git commit
   when: 1745440297
-- cmd: bin/rspec
-  when: 1745440574
 - cmd: git st
   when: 1745440684
 - cmd: git co config
@@ -58,7 +32,17 @@
   when: 1745440735
 - cmd: git commit -am 'uncomment the good rspec options'
   when: 1745440881
-- cmd: bin/rspec
-  when: 1745441003
 - cmd: git commit -a
   when: 1745441028
+- cmd: bin/rspec
+  when: 1745442293
+- cmd: bin/rails routes
+  when: 1745442320
+- cmd: bin/rspec
+  when: 1745442334
+- cmd: git st
+  when: 1745442670
+- cmd: git add .
+  when: 1745442672
+  paths:
+    - .
