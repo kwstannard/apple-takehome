@@ -34,3 +34,13 @@
   when: 1745439705
   paths:
     - .
+- cmd: git commit
+  when: 1745439708
+- cmd: bin/rspec
+  when: 1745439728
+- cmd: git st
+  when: 1745440291
+- cmd: git add .
+  when: 1745440294
+  paths:
+    - .

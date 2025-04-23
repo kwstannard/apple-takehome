@@ -63,6 +63,8 @@ RSpec.configure do |config|
   # To enable this behaviour uncomment the line below.
   # config.infer_spec_type_from_file_location!
 
+  config.alias_example_group_to :feature, type: :request
+  config.alias_example_to :scenario
   # Filter lines from Rails gems in backtraces.
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
