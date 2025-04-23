@@ -24,3 +24,13 @@
   when: 1745439100
   paths:
     - .
+- cmd: git commit
+  when: 1745439102
+- cmd: bundle binstubs --all
+  when: 1745439684
+- cmd: git st
+  when: 1745439686
+- cmd: git add .
+  when: 1745439705
+  paths:
+    - .
