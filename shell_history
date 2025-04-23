@@ -58,3 +58,7 @@
   when: 1745440735
 - cmd: git commit -am 'uncomment the good rspec options'
   when: 1745440881
+- cmd: bin/rspec
+  when: 1745441003
+- cmd: git commit -a
+  when: 1745441028
