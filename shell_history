@@ -10,3 +10,13 @@
   when: 1745437359
   paths:
     - .
+- cmd: git commit
+  when: 1745437362
+- cmd: rails new . --skip-test --skip-js --api --skip-docker -M -C -A
+  when: 1745438052
+  paths:
+    - .
+- cmd: git add .
+  when: 1745438074
+  paths:
+    - .
