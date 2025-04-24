@@ -26,14 +26,6 @@
   when: 1745440881
 - cmd: bin/rails routes
   when: 1745442320
-- cmd: git diff
-  when: 1745448627
-- cmd: git st
-  when: 1745448640
-- cmd: git add .
-  when: 1745448647
-  paths:
-    - .
 - cmd: git commit
   when: 1745448650
 - cmd: git fuh
@@ -42,14 +34,6 @@
   when: 1745450099
 - cmd: git sqh
   when: 1745450238
-- cmd: bin/rspec
-  when: 1745502347
-- cmd: git commit -a
-  when: 1745502361
-- cmd: nvim
-  when: 1745502468
-- cmd: bin/rspec
-  when: 1745503151
 - cmd: bundle add -h
   when: 1745503175
 - cmd: bundle add webmock -r=false
@@ -60,29 +44,37 @@
   when: 1745503206
 - cmd: git diff
   when: 1745503215
-- cmd: fg
-  when: 1745503222
-- cmd: bin/rspec
-  when: 1745503353
-- cmd: fg
-  when: 1745503365
-- cmd: bin/rspec
-  when: 1745503620
-- cmd: fg
-  when: 1745503647
-- cmd: bin/rspec
-  when: 1745503658
-- cmd: fg
-  when: 1745503668
-- cmd: nvim
-  when: 1745503680
-- cmd: bin/rspec
-  when: 1745504383
 - cmd: git add .
   when: 1745504396
   paths:
     - .
-- cmd: git st
-  when: 1745504397
 - cmd: git commit -a
   when: 1745504405
+- cmd: git st
+  when: 1745505449
+- cmd: nvim
+  when: 1745505506
+- cmd: bin/rspec
+  when: 1745505632
+- cmd: fg
+  when: 1745505650
+- cmd: bin/rspec
+  when: 1745505678
+- cmd: fg
+  when: 1745505685
+- cmd: bin/rspec
+  when: 1745505790
+- cmd: fg
+  when: 1745505827
+- cmd: bin/rspec
+  when: 1745505878
+- cmd: fg
+  when: 1745505908
+- cmd: git st
+  when: 1745505948
+- cmd: git add .
+  when: 1745505950
+  paths:
+    - .
+- cmd: git commit -a
+  when: 1745505965

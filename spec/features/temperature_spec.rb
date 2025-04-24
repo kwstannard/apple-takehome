@@ -18,7 +18,7 @@ RSpec.feature 'current temperature', type: :request do
       zip: '46255',
     }
 
-    stub_request("remote_weather").to(Mocks::RemoteWeather)
+    stub_request(:get, "remote_weather").to_rack(Mocks::RemoteWeather)
 
     aggregate_failures do
       expect(response.status).to eq(200)
@@ -34,7 +34,7 @@ RSpec.feature 'current temperature', type: :request do
       zip: '11111',
     }
 
-    stub_request("remote_weather").to(Mocks::RemoteWeather)
+    stub_request(:get, "remote_weather").to_rack(Mocks::RemoteWeather)
 
     aggregate_failures do
       expect(response.status).to eq(200)
@@ -51,7 +51,7 @@ RSpec.feature 'current temperature', type: :request do
   end
 
   scenario 'the remote weather service is down' do
-    stub_request("remote_weather").to(Mocks::FailingService)
+    stub_request(:get, "remote_weather").to_rack(Mocks::FailingService)
 
     get '/v1/current_temperature', params: {
       address1: '1234 Street Av',
@@ -63,7 +63,7 @@ RSpec.feature 'current temperature', type: :request do
     aggregate_failures do
       expect(response.status).to eq(500)
       expect(response.body).to eq('"Pardon the interruption"')
-      expect(Mocks::MonitorService.reports).to contain_exactly(
+      expect(Mocks::MonitoringService.reports).to contain_exactly(
         [{error: '"http://remote_weather/get" failed with a 500' }]
       )
     end
