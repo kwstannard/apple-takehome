@@ -63,6 +63,10 @@ RSpec.configure do |config|
   # To enable this behaviour uncomment the line below.
   # config.infer_spec_type_from_file_location!
 
+  require 'webmock'
+  WebMock.enable!
+  config.include(WebMock::API, type: :request)
+
   config.alias_example_group_to :feature, type: :request
   config.alias_example_to :scenario
   # Filter lines from Rails gems in backtraces.

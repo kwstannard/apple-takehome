@@ -16,14 +16,6 @@
   when: 1745438171
 - cmd: bundle binstubs --all
   when: 1745439684
-- cmd: git add .
-  when: 1745440294
-  paths:
-    - .
-- cmd: git commit
-  when: 1745440297
-- cmd: git st
-  when: 1745440684
 - cmd: git co config
   when: 1745440712
   paths:
@@ -32,42 +24,8 @@
   when: 1745440735
 - cmd: git commit -am 'uncomment the good rspec options'
   when: 1745440881
-- cmd: git commit -a
-  when: 1745441028
-- cmd: bin/rspec
-  when: 1745442293
 - cmd: bin/rails routes
   when: 1745442320
-- cmd: bin/rspec
-  when: 1745442334
-- cmd: git st
-  when: 1745442670
-- cmd: git add .
-  when: 1745442672
-  paths:
-    - .
-- cmd: git commit
-  when: 1745442674
-- cmd: bin/rspec
-  when: 1745442978
-- cmd: git add .
-  when: 1745443293
-  paths:
-    - .
-- cmd: git commit
-  when: 1745443296
-- cmd: bin/rspec
-  when: 1745443516
-- cmd: git st
-  when: 1745444625
-- cmd: git diff
-  when: 1745444627
-- cmd: bin/rspec
-  when: 1745444632
-- cmd: git st
-  when: 1745447584
-- cmd: bin/rspec
-  when: 1745447763
 - cmd: git diff
   when: 1745448627
 - cmd: git st
@@ -78,13 +36,53 @@
     - .
 - cmd: git commit
   when: 1745448650
-- cmd: bin/rspec
-  when: 1745448870
 - cmd: git fuh
   when: 1745450088
 - cmd: git commit --amend
   when: 1745450099
-- cmd: bin/rspec
-  when: 1745450228
 - cmd: git sqh
   when: 1745450238
+- cmd: bin/rspec
+  when: 1745502347
+- cmd: git commit -a
+  when: 1745502361
+- cmd: nvim
+  when: 1745502468
+- cmd: bin/rspec
+  when: 1745503151
+- cmd: bundle add -h
+  when: 1745503175
+- cmd: bundle add webmock -r=false
+  when: 1745503193
+- cmd: bundle add webmock -r false
+  when: 1745503200
+- cmd: bundle add webmock --require false
+  when: 1745503206
+- cmd: git diff
+  when: 1745503215
+- cmd: fg
+  when: 1745503222
+- cmd: bin/rspec
+  when: 1745503353
+- cmd: fg
+  when: 1745503365
+- cmd: bin/rspec
+  when: 1745503620
+- cmd: fg
+  when: 1745503647
+- cmd: bin/rspec
+  when: 1745503658
+- cmd: fg
+  when: 1745503668
+- cmd: nvim
+  when: 1745503680
+- cmd: bin/rspec
+  when: 1745504383
+- cmd: git add .
+  when: 1745504396
+  paths:
+    - .
+- cmd: git st
+  when: 1745504397
+- cmd: git commit -a
+  when: 1745504405
