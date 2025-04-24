@@ -4,7 +4,6 @@ module V1
       render json: WeatherService.get(address)
     rescue WeatherService::Error
       render json: '"Pardon the interruption"', status: 500
-      raise if ENV['DEBUG']
     end
 
     private
