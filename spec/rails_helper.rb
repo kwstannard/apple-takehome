@@ -66,6 +66,7 @@ RSpec.configure do |config|
   require 'webmock'
   WebMock.enable!
   config.include(WebMock::API, type: :request)
+  config.after(type: :request) { Mocks::MonitoringService.reports = [] }
 
   config.alias_example_group_to :feature, type: :request
   config.alias_example_to :scenario

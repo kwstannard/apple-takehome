@@ -118,3 +118,29 @@
   when: 1745527932
 - cmd: git sqh
   when: 1745528231
+- cmd: git st
+  when: 1745528835
+- cmd: git add .
+  when: 1745528837
+  paths:
+    - .
+- cmd: git commit
+  when: 1745528844
+- cmd: git log
+  when: 1745528865
+  paths:
+    - log
+- cmd: git reset
+  when: 1745528871
+- cmd: git add app/models/address.rb
+  when: 1745528877
+  paths:
+    - app/models/address.rb
+- cmd: git commit --fixup HEAD~
+  when: 1745528891
+- cmd: git diff
+  when: 1745528893
+- cmd: git add .
+  when: 1745528936
+  paths:
+    - .
