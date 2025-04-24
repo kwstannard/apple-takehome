@@ -20,10 +20,14 @@ module Mocks
       end
 
       def forecasts
-        render json: if params[:state] == 'CA'
-          [{ date: Date.today.iso8601, high: 80, low: 60 }]
+        render json: params.require(:dates).map { fake_forecast(_1) }
+      end
+
+      def fake_forecast(date)
+        if params[:state] == 'CA'
+          { date: date, high: 80, low: 60 }
         else
-          [{ date: Date.today.iso8601, high: 70, low: 50 }]
+          { date: date, high: 70, low: 50 }
         end
       end
     end

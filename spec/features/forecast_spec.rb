@@ -1,6 +1,31 @@
 require 'rails_helper'
 
 RSpec.feature 'location forecast' do
+  scenario 'a user requests for Indianapolis for 3-8 days from now' do
+    stub_request(:any, %r{http://remote_weather}).to_rack(Mocks::RemoteWeather)
+
+    get '/v1/forecasts', params: {
+      address1: '1234 Street Av',
+      city: 'Indianapolis',
+      state: 'IN',
+      zip: '46255',
+      start_date: 3.days.from_now.to_date.iso8601,
+      end_date: 8.days.from_now.to_date.iso8601,
+    }
+
+    aggregate_failures do
+      expect(response.status).to eq(200)
+      expect(JSON.parse(response.body)).to contain_exactly(
+        { "date" => 3.days.from_now.to_date.iso8601, "high" => 70, "low" => 50 },
+        { "date" => 4.days.from_now.to_date.iso8601, "high" => 70, "low" => 50 },
+        { "date" => 5.days.from_now.to_date.iso8601, "high" => 70, "low" => 50 },
+        { "date" => 6.days.from_now.to_date.iso8601, "high" => 70, "low" => 50 },
+        { "date" => 7.days.from_now.to_date.iso8601, "high" => 70, "low" => 50 },
+        { "date" => 8.days.from_now.to_date.iso8601, "high" => 70, "low" => 50 },
+      )
+    end
+  end
+
   scenario 'a user requests for Indianapolis' do
     stub_request(:any, %r{http://remote_weather}).to_rack(Mocks::RemoteWeather)
 

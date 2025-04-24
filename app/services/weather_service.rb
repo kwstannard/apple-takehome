@@ -2,10 +2,12 @@ module WeatherService
   extend self
   class Error < RuntimeError; end
 
-  def forecasts(address)
+  def forecasts(address, dates)
     host = 'remote_weather'
     path = '/forecasts'
-    r = Net::HTTP.get_response(host, "#{path}?#{URI.encode_www_form(address)}")
+    uri_addr = URI.encode_www_form(address)
+    uri_dates = URI.encode_www_form({'dates[]' => dates})
+    r = Net::HTTP.get_response(host, "#{path}?#{uri_addr}&#{uri_dates}")
 
     case r.code
     when "200".."299"
