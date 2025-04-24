@@ -5,6 +5,21 @@ RSpec.feature 'location forecast' do
   end
 
   scenario 'a user requests for Sacramento' do
+    stub_request(:any, %r{http://remote_weather}).to_rack(Mocks::RemoteWeather)
+
+    get '/v1/forecasts', params: {
+      address1: '1234 Street Av',
+      city: 'Sacramento',
+      state: 'CA',
+      zip: '11111',
+    }
+
+    aggregate_failures do
+      expect(response.status).to eq(200)
+      expect(JSON.parse(response.body)).to contain_exactly(
+        { "date" => Date.today.iso8601, "high" => 80, "low" => 60 }
+      )
+    end
   end
 
   scenario 'a user forgets the address' do
