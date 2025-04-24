@@ -10,5 +10,6 @@ Rails.application.routes.draw do
 
   namespace :v1 do
     get 'current_temperature', to: 'temperatures#current'
+    resources :forecasts, only: [:index]
   end
 end
