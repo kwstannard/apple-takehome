@@ -1,11 +1,21 @@
 module WeatherService
   extend self
+  class Error < RuntimeError; end
 
   def get(address)
-    if address.state == 'CA'
-      { current_temperature: 50 }
+    host = 'remote_weather'
+    path = '/get'
+    r = Net::HTTP.get_response(host, "#{path}?#{URI.encode_www_form(address)}")
+
+    case r.code
+    when "200".."299"
+      JSON.parse(r.body)
     else
-      { current_temperature: 70 }
+      MonitorService.report(
+        msg: "#{host}#{path} failed with a #{r.code} response.",
+        cause: r.body,
+      )
+      raise Error, r.body
     end
   end
 end

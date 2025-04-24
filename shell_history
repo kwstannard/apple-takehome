@@ -26,14 +26,8 @@
   when: 1745440881
 - cmd: bin/rails routes
   when: 1745442320
-- cmd: git commit
-  when: 1745448650
-- cmd: git fuh
-  when: 1745450088
 - cmd: git commit --amend
   when: 1745450099
-- cmd: git sqh
-  when: 1745450238
 - cmd: bundle add -h
   when: 1745503175
 - cmd: bundle add webmock -r=false
@@ -42,39 +36,67 @@
   when: 1745503200
 - cmd: bundle add webmock --require false
   when: 1745503206
-- cmd: git diff
-  when: 1745503215
-- cmd: git add .
-  when: 1745504396
-  paths:
-    - .
-- cmd: git commit -a
-  when: 1745504405
-- cmd: git st
-  when: 1745505449
 - cmd: nvim
-  when: 1745505506
-- cmd: bin/rspec
-  when: 1745505632
+  when: 1745511702
+- cmd: bin/rails c
+  when: 1745513286
 - cmd: fg
-  when: 1745505650
+  when: 1745513638
+- cmd: bin/rspec spec/features/temperature_spec.rb:53 --backtrace
+  when: 1745516506
+- cmd: git diff
+  when: 1745519590
+- cmd: git commit
+  when: 1745519639
+- cmd: git fuh
+  when: 1745520027
+- cmd: bin/rspec spec/features/temperature_spec.rb:53
+  when: 1745520101
+- cmd: git commit -a
+  when: 1745520647
+- cmd: git sqh
+  when: 1745520667
+- cmd: git sq HEAD~2
+  when: 1745520707
+- cmd: DEBUG=1 bin/rspec
+  when: 1745521174
 - cmd: bin/rspec
-  when: 1745505678
-- cmd: fg
-  when: 1745505685
-- cmd: bin/rspec
-  when: 1745505790
-- cmd: fg
-  when: 1745505827
-- cmd: bin/rspec
-  when: 1745505878
-- cmd: fg
-  when: 1745505908
-- cmd: git st
-  when: 1745505948
+  when: 1745526662
 - cmd: git add .
-  when: 1745505950
+  when: 1745526667
   paths:
     - .
+- cmd: git reset
+  when: 1745526672
+- cmd: git add lib/webmock_patch.rb
+  when: 1745526679
+  paths:
+    - lib/webmock_patch.rb
+- cmd: git log
+  when: 1745526682
+  paths:
+    - log
+- cmd: git fu HEAD~
+  when: 1745526692
+- cmd: git reset HEAD~
+  when: 1745526713
+- cmd: git st
+  when: 1745526714
+- cmd: git add lib/webmock_patch.rb
+  when: 1745526717
+  paths:
+    - lib/webmock_patch.rb
+- cmd: git commit --fixup HEAD~
+  when: 1745526727
 - cmd: git commit -a
-  when: 1745505965
+  when: 1745526735
+- cmd: git sq HEAD~
+  when: 1745526777
+- cmd: git fu HEAD~
+  when: 1745526807
+- cmd: bin/rspec
+  when: 1745526819
+- cmd: git st
+  when: 1745527210
+- cmd: git sqh
+  when: 1745527218
