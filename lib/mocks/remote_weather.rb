@@ -20,7 +20,11 @@ module Mocks
       end
 
       def forecasts
-        render json: [{ date: Date.today.iso8601, high: 80, low: 60 }]
+        render json: if params[:state] == 'CA'
+          [{ date: Date.today.iso8601, high: 80, low: 60 }]
+        else
+          [{ date: Date.today.iso8601, high: 70, low: 50 }]
+        end
       end
     end
   end
