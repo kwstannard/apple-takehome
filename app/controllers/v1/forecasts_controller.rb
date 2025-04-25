@@ -13,7 +13,7 @@ module V1
 
       def dates
         if params[:start_date] && params[:end_date]
-          (params[:start_date].to_date..params[:end_date].to_date).to_a
+          (params[:start_date].to_date..params[:end_date].to_date).map(&:iso8601)
         else
           [Date.today.iso8601]
         end

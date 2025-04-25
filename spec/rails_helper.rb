@@ -64,9 +64,20 @@ RSpec.configure do |config|
   # config.infer_spec_type_from_file_location!
 
   require 'webmock'
+  require 'webmock/rspec'
   WebMock.enable!
   config.include(WebMock::API, type: :request)
   config.after(type: :request) { Mocks::MonitoringService.reports = [] }
+  config.after(type: :request) { WeatherService.cache.clear }
+
+  config.include(Module.new {
+    def freeze_time(time)
+      RSpec::Mocks.with_temporary_scope do
+        allow(Time).to receive(:now).and_return(time)
+        yield
+      end
+    end
+  })
 
   config.alias_example_group_to :feature, type: :request
   config.alias_example_to :scenario

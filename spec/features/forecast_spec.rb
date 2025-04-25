@@ -26,6 +26,50 @@ RSpec.feature 'location forecast' do
     end
   end
 
+  scenario 'a user requests a forecast every 20 minutes and hits the cache' do
+    stub_request(:any, %r{http://remote_weather}).to_rack(Mocks::RemoteWeather)
+
+    # This will not be cached
+    get '/v1/forecasts', params: {
+      address1: '1234 Street Av',
+      city: 'Indianapolis',
+      state: 'IN',
+      zip: '46255',
+    }
+
+    # This will be cached
+    freeze_time(20.minutes.from_now) do
+      get '/v1/forecasts', params: {
+        address1: '1234 Street Av',
+        city: 'Indianapolis',
+        state: 'IN',
+        zip: '46255',
+      }
+    end
+
+    # This will not be cached
+    freeze_time(40.minutes.from_now) do
+      get '/v1/forecasts', params: {
+        address1: '1234 Street Av',
+        city: 'Indianapolis',
+        state: 'IN',
+        zip: '46255',
+      }
+    end
+
+    # This will be cached
+    freeze_time(60.minutes.from_now) do
+      get '/v1/forecasts', params: {
+        address1: '1234 Street Av',
+        city: 'Indianapolis',
+        state: 'IN',
+        zip: '46255',
+      }
+    end
+
+    expect(a_request(:get, %r{http://remote_weather/forecast})).to have_been_made.times(2)
+  end
+
   scenario 'a user requests for Indianapolis' do
     stub_request(:any, %r{http://remote_weather}).to_rack(Mocks::RemoteWeather)
 
