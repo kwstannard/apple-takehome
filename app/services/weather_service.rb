@@ -5,7 +5,7 @@ module WeatherService
   class Error < RuntimeError; end
 
   attr_accessor :cache
-  self.cache = ActiveSupport::Cache::FileStore.new(Tempfile.new('forecasts'))
+  self.cache = ActiveSupport::Cache::FileStore.new(Tempfile.new('forecasts').path)
 
   def forecasts(address, dates)
     cache_info = cache.then { _1.send(:read_entry, _1.send(:normalize_key, address.zip, {})) }
