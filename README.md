@@ -1,31 +1,84 @@
-# Weather forecaster
+# Weather Forecaster
 
-Hello dear readers, and welcome.
+Hello dear readers, and welcome!
 
-## Please note the following guidelines for reviewing this project
+## Project Review Guidelines
 
-I use in git commit messages over comments 95% of the time. If you have a question about something, please read the commit message.
+I hope your day is going well.
 
-Given that this is a backend position I am using an API as the UI. If you are wondering how to use it, I utilize the spec/features directory for user acceptance tests.
+To understand the development process and rationale behind specific
+decisions not mentioned here, please refer to the Git commit
+messages, as I've used them extensively for documentation.
 
-I am going to keep this close to bog standard Rails as possible. If you want to see cool things, go check out my github profile.
+It is beneficial to be familiar with Sandi Metz's POODR and
+99Bottles. I have found a user focused, outside-in approach to be
+better in most cases.
 
-I am going to do one thing you have never seen before to mock out a remote weather service.
+I made a separate route for getting the current temperature because
+that is a direct measure and not a forecast, so from a design
+viewpoint we will run into fewer problems in the future.
 
-I do test driven design starting with the http interface. It is okay to say that the app is the unit and everything under that is private. If I believe that the test suite will benefit from tests for lower level interfaces I will do that.
+## Design approach
 
-I hope whoever is reading this is a Sandi Metz fan.
+Given that this is for a backend position, I've implemented the UI as
+an API. For usage examples, please refer to the user acceptance tests
+in the `spec/features` directory. If you'd like to see my frontend
+development skills, you can find recent projects, "doggo" and
+"test_repo," on my GitHub profile.
 
-Again, I cannot stress this enough check the git commits if you have questions.
+As requested, this project follows standard Rails conventions.
+Application specific code goes into app/, lib/ is for non-application
+code, etc. I put the external service wrappers under app/services
+here, but I was 50/50 on using lib/services instead.
 
-## How to setup
+To demonstrate my approach to system integration, I've implemented a
+unique method for mocking the remote weather and monitoring services.
+This pattern has proven effective in previous projects. I hope you
+enjoy it.
 
-`bin/setup`
+Please note that the assignment did not require accurate or
+real-world forecasts, so the focus was placed on functionality rather
+than data accuracy.
 
-## How to run the server
+## Testing Approach
+
+All tests adhere to the Arrange/Act/Assert pattern. The tests are
+designed to minimize the use of mocks and stubs and avoid referencing
+internal implementation details, focusing instead on response
+properties and external calls.
+
+I used a test-driven design (TDD) approach, starting with the HTTP
+interface. In this context, the application can be considered the
+unit under test, with underlying components treated as private. I
+considered adding tests for the `app/services` classes; Given their
+limited, single-location use, I've determined that they can be
+treated as private internals of the application. The speed of the
+tests allowed for comprehensive testing at the HTTP interface level.
+
+## Running the Server
 
 `bin/rails server`
 
-## How to run the tests
+## Running Tests
 
 `bin/rspec`
+
+## Original Assignment Text:
+
+Coding Assignment
+
+Requirements:
+    • Must be done in Ruby on Rails
+    • Accept an address as input
+    • Retrieve forecast data for the given address. This should include, at minimum, the current temperature (Bonus points - Retrieve high/low and/or extended forecast)
+    • Display the requested forecast details to the user
+    • Cache the forecast details for 30 minutes for all subsequent requests by zip codes. Display indicator if result is pulled from cache.
+
+Assumptions:
+    • This project is open to interpretation
+    • Functionality is a priority over form
+    • If you get stuck, complete as much as you can
+
+Submission:
+    • Use a public source code repository (GitHub, etc) to store your code
+    • Send us the link to your completed code
