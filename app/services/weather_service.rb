@@ -1,3 +1,5 @@
+require 'net/http'
+
 module WeatherService
   extend self
   class Error < RuntimeError; end

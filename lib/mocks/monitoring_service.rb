@@ -1,4 +1,5 @@
 require 'webmock_patch'
+require 'net/http'
 
 module Mocks
   class MonitoringService < Rails::Engine
