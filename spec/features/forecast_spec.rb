@@ -2,8 +2,10 @@ require 'rails_helper'
 
 RSpec.feature 'location forecast' do
   scenario 'a user requests for Indianapolis for 3-8 days from now' do
+    # Arrange
     stub_request(:any, %r{http://remote_weather}).to_rack(Mocks::RemoteWeather)
 
+    # Act
     get '/v1/forecasts', params: {
       address1: '1234 Street Av',
       city: 'Indianapolis',
@@ -13,6 +15,7 @@ RSpec.feature 'location forecast' do
       end_date: 8.days.from_now.to_date.iso8601,
     }
 
+    # Assert
     aggregate_failures do
       expect(response.status).to eq(200)
       expect(JSON.parse(response.body)).to contain_exactly(
@@ -37,6 +40,7 @@ RSpec.feature 'location forecast' do
       zip: '46255',
     }
 
+
     # This will be cached
     freeze_time(20.minutes.from_now) do
       get '/v1/forecasts', params: {
@@ -57,7 +61,7 @@ RSpec.feature 'location forecast' do
       }
     end
 
-    # This will be cached
+    # This will be from cache
     freeze_time(60.minutes.from_now) do
       get '/v1/forecasts', params: {
         address1: '1234 Street Av',
@@ -65,6 +69,16 @@ RSpec.feature 'location forecast' do
         state: 'IN',
         zip: '46255',
       }
+
+      aggregate_failures do
+        expect(response.status).to eq(200)
+        expect(response.headers["x-server-cache-info"]).to eq(
+          { 'obtained-at' => 20.minutes.ago.iso8601, 'expires-at' => 10.minutes.from_now.iso8601 }
+        )
+        expect(JSON.parse(response.body)).to contain_exactly(
+          { "date" => Date.today.iso8601, "high" => 70, "low" => 50 }
+        )
+      end
     end
 
     expect(a_request(:get, %r{http://remote_weather/forecast})).to have_been_made.times(2)

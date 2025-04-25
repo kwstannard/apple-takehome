@@ -6,7 +6,11 @@ module WeatherService
   self.cache = ActiveSupport::Cache::FileStore.new(Tempfile.new('forecasts'))
 
   def forecasts(address, dates)
-    all_forecasts(address).select {|f| dates.inspect.include?(f['date']) }
+    cache_info = cache.then { _1.send(:read_entry, _1.send(:normalize_key, address.zip, {})) }
+    [
+      all_forecasts(address).select {|f| dates.inspect.include?(f['date']) },
+      cache_info,
+    ]
   end
 
   def all_forecasts(address)

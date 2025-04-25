@@ -6,10 +6,6 @@
   when: 1745437350
   paths:
     - shell_history
-- cmd: rails new . --skip-test --skip-js --api --skip-docker -M -C -A
-  when: 1745438052
-  paths:
-    - .
 - cmd: bundle add rspec-rails
   when: 1745438140
 - cmd: rails g rspec:install
@@ -58,8 +54,6 @@
   when: 1745526717
   paths:
     - lib/webmock_patch.rb
-- cmd: git commit -a
-  when: 1745526735
 - cmd: git sq HEAD~
   when: 1745526777
 - cmd: git fu HEAD~
@@ -88,8 +82,6 @@
   when: 1745527932
 - cmd: git sqh
   when: 1745528231
-- cmd: git st
-  when: 1745528835
 - cmd: git log
   when: 1745528865
   paths:
@@ -102,48 +94,16 @@
     - app/models/address.rb
 - cmd: git commit --fixup HEAD~
   when: 1745528891
-- cmd: git diff
-  when: 1745528893
-- cmd: git add .
-  when: 1745528936
-  paths:
-    - .
-- cmd: git commit
-  when: 1745528938
-- cmd: bin/rspec
-  when: 1745529177
-- cmd: git commit
-  when: 1745529379
-- cmd: git commit -a
-  when: 1745529383
-- cmd: bin/rspec
-  when: 1745529594
-- cmd: git st
-  when: 1745529604
 - cmd: git commit -a
   when: 1745529608
-- cmd: bin/rspec
-  when: 1745529814
 - cmd: rails new . --skip-test --skip-js --api --skip-docker -M -C -A
   when: 1745532647
   paths:
     - .
 - cmd: bin/rspec
   when: 1745532650
-- cmd: bin/rspec spec/features/forecast_spec.rb:4
-  when: 1745532673
-- cmd: bin/rspec spec/features/
-  when: 1745534600
-  paths:
-    - spec/features/
 - cmd: git commit -A
   when: 1745534618
-- cmd: git add .
-  when: 1745534636
-  paths:
-    - .
-- cmd: git commit
-  when: 1745534638
 - cmd: bin/rspec spec/features/
   when: 1745535076
   paths:
@@ -154,19 +114,29 @@
   when: 1745542128
   paths:
     - spec/features/forecast_spec.rb
-- cmd: git st
-  when: 1745542130
-- cmd: git diff
-  when: 1745542137
-- cmd: git st
-  when: 1745542140
 - cmd: git clean -fd
   when: 1745542145
-- cmd: git st
-  when: 1745542155
 - cmd: git diff
   when: 1745542157
 - cmd: git add .
   when: 1745542165
+  paths:
+    - .
+- cmd: git reset README.md
+  when: 1745542169
+  paths:
+    - README.md
+- cmd: git st
+  when: 1745542170
+- cmd: git commit
+  when: 1745542183
+- cmd: git st
+  when: 1745542727
+- cmd: bin/rspec spec/features/forecast_spec.rb
+  when: 1745544090
+  paths:
+    - spec/features/forecast_spec.rb
+- cmd: git add .
+  when: 1745546645
   paths:
     - .

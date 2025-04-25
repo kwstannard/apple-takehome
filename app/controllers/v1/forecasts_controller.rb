@@ -1,7 +1,9 @@
 module V1
   class ForecastsController < ApplicationController
     def index
-      render json: WeatherService.forecasts(address, dates)
+      wf, cache_info = WeatherService.forecasts(address, dates)
+      propogate_cache_info_to_headers(cache_info)
+      render json: wf
     rescue WeatherService::Error
       render json: '"Pardon the interruption"', status: 500
     end
@@ -17,6 +19,15 @@ module V1
         else
           [Date.today.iso8601]
         end
+      end
+
+      def propogate_cache_info_to_headers(cache_info)
+        return unless cache_info
+
+        response.headers['x-server-cache-info'] = {
+          'obtained-at' => Time.at(cache_info.expires_at - 30.minutes).utc.iso8601,
+          'expires-at' => Time.at(cache_info.expires_at).utc.iso8601,
+        }
       end
   end
 end
